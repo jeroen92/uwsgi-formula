@@ -53,7 +53,21 @@
       'emperor_config'          : 'uwsgi.ini',
       'plugins'                 : ['uwsgi-plugin-python'],
     },
-
+    'FreeBSD': {
+      'server_pkg'              : 'uwsgi-py36',
+      'uwsgi_service'           : 'uwsgi',
+      'application_available'   : '/usr/local/etc/uwsgi',
+      'application_enabled'     : '/usr/local/etc/uwsgi',
+      'application_use_symlink' : False,
+      'emperor_pkg'             : 'uwsgi',
+      'emperor_service'         : 'uwsgi',
+      'emperor_dir'             : '/usr/local/etc/uwsgi',
+      'vassal_available'        : '/usr/local/etc/uwsgi',
+      'vassal_enabled'          : '/usr/local/etc/uwsgi',
+      'vassal_use_symlink'      : False,
+      'emperor_config'          : 'uwsgi.ini',
+      'plugins'                 : ['uwsgi-plugin-python'],
+    }
   }, default='Debian' ),
 
   'package': {
@@ -103,6 +117,16 @@
           'uid': 'http',
           'gid': 'http',
           'emperor': '/etc/uwsgi/vassals',
+      },
+      'FreeBSD': {
+        'autoload': 'true',
+        'master': 'true',
+        'workers': '2',
+        'no-orphans': 'true',
+        'log-date': 'true',
+        'uid': 'uwsgi',
+        'gid': 'uwsgi',
+        'emperor': '/usr/local/etc/uwsgi',
       },
     }, default='Debian'),
   },
